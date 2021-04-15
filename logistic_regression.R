@@ -5,7 +5,7 @@ colnames(Default$default)
 substitute(table(Default$default))
 
 
-single_variat_log <- function(data_frame, class_var, desc_var, threshold){
+bi_variat_log <- function(data_frame, class_var, desc_var, threshold){
   glm_model <- glm(class_var ~ desc_var, data = data_frame, family = binomial)
   x <- seq(min(desc_var), max(desc_var))
   plot(desc_var, class_var, xlab = str_interp("${deparse(substitute(desc_var))}"), ylab = str_interp("${deparse(substitute(class_var))}"))
@@ -21,10 +21,10 @@ single_variat_log <- function(data_frame, class_var, desc_var, threshold){
 }
 
 #Default <- read.csv("Coursework/Week\ 15\ Logistic\ Regression-20210413/Default.csv", stringsAsFactors = T)
-single_variat_log(Default, Default$num_default, Default$balance, 0.5)
+bi_variat_log(Default, Default$num_default, Default$balance, 0.5)
 
 
-bie_variat_log <- function(data_frame, class_var, desc_var01, desc_var02, threshold){
+tri_variat_log <- function(data_frame, class_var, desc_var01, desc_var02, threshold){
   colors <- c("#00AFBB", "#E7B800")
   colors <- colors[as.numeric(as.factor(class_var))]
   shapes <- c(3, 17)
@@ -43,7 +43,7 @@ bie_variat_log <- function(data_frame, class_var, desc_var01, desc_var02, thresh
   print(str_interp("prediction-accuracy: ${1-error}"))
 }
 
-bie_variat_log(Default, Default$num_default, Default$balance, Default$income,0.1)
+tri_variat_log(Default, Default$num_default, Default$balance, Default$income,0.1)
 
 
 
